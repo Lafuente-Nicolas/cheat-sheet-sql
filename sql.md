@@ -167,3 +167,25 @@ LIMIT num_limit OFFSET num_offset;
 #### exercice :
 
 __Liste de tous les réalisateurs de films Pixar (par ordre alphabétique), sans doublons:__
+
+```sql 
+SELECT distinct director FROM movies
+ORDER BY director asc;
+``` 
+
+__Énumérez les quatre derniers films Pixar sortis (du plus récent au moins récent) :__ 
+
+```sql
+SELECT distinct title, year FROM movies
+ORDER BY year desc
+limit 4;
+``` 
+__Répertoriez les cinq premiers films Pixar par ordre alphabétique :__
+```sql
+SELECT distinct title FROM movies
+ORDER BY title asc
+limit 5;
+```
+__Énumérez les cinq prochains films Pixar classés par ordre alphabétique :__
+
+```sql
