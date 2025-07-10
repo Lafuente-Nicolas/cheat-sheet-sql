@@ -226,3 +226,30 @@ where country = "Mexico"
 order by population desc
 limit 2;
 ``` 
+__Énumérez les troisième et quatrième plus grandes villes (par population) des États-Unis et leur population__
+```sql
+SELECT city, population FROM north_american_cities
+where country = "United States"
+order by population desc
+limit 2 offset 2;
+```
+## Requêtes multi-tables avec JOIN
+
+### Requêtes multi-tables avec jointures
+
+Les tables qui partagent des informations sur une seule entité doivent disposer d’une clé primaire qui identifie cette entité de manière unique dans la base de données.
+
+En utilisant la clause dans une requête, nous pouvons combiner les données de ligne de deux tables distinctes à l’aide de cette clé unique. La première des jointures que nous allons présenter est le __.JOININNER JOIN__
+```sql
+Sélectionner une requête avec INNER JOIN sur plusieurs tables
+SELECT column, another_table_column, …
+FROM mytable
+INNER JOIN another_table 
+    ON mytable.id = another_table.id
+WHERE condition(s)
+ORDER BY column, … ASC/DESC
+LIMIT num_limit OFFSET num_offset;
+```
+
+
+
