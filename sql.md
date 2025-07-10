@@ -276,3 +276,32 @@ order by rating desc
 ## JOINTURES EXTERNES
 
 Si les deux tables ont des données asymétriques, ce qui peut facilement se produire lorsque les données sont saisies dans des étapes, alors nous devrions utiliser un , ou au contraire pour nous assurer que Les données dont vous avez besoin ne sont pas laissées en dehors des résultats. __LEFT JOINRIGHT JOINFULL JOIN__
+```sql
+Sélectionner une requête avec des jointures GAUCHE/DROITE/COMPLÈTE sur plusieurs tables
+SELECT column, another_column, …
+FROM mytable
+INNER/LEFT/RIGHT/FULL JOIN another_table 
+    ON mytable.id = another_table.matching_id
+WHERE condition(s)
+ORDER BY column, … ASC/DESC
+LIMIT num_limit OFFSET num_offset;
+```
+Lorsque vous utilisez l’une de ces nouvelles jointures, vous devrez probablement écrire une logique supplémentaire pour gérer s dans le résultat et les contraintes (nous y reviendrons dans la leçon suivante). __NULL__
+
+#### exercice :
+
+__Retrouvez la liste de tous les bâtiments qui ont des employés :__
+```sql
+SELECT DISTINCT building FROM employees;
+```
+
+__Retrouvez la liste de tous les bâtiments et leur capacité__
+```sql 
+SELECT * FROM buildings;
+``` 
+__Énumérez tous les bâtiments et les rôles distincts des employés dans chaque bâtiment (y compris les bâtiments vides)__`
+
+```sql
+SELECT DISTINCT building_name, role FROM buildings 
+LEFT JOIN employees ON building_name = building;
+```
