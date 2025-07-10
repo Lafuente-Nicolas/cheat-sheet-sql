@@ -250,6 +250,29 @@ WHERE condition(s)
 ORDER BY column, … ASC/DESC
 LIMIT num_limit OFFSET num_offset;
 ```
+#### exercice :
 
+__Retrouvez les ventes nationales et internationales de chaque film__
 
+```sql 
+SELECT title, domestic_sales, international_sales FROM movies
+JOIN boxoffice ON movies.id = boxoffice.movie_id;
+```
 
+__Montrez les chiffres de vente de chaque film qui a mieux marché à l’international plutôt qu’au pays__
+
+```sql
+SELECT title, domestic_sales, international_sales FROM movies
+JOIN boxoffice ON movies.id = boxoffice.movie_id
+WHERE international_sales > domestic_sales;
+```
+__Listez tous les films par leurs notes par ordre décroissant__
+```sql
+SELECT title, rating FROM movies
+JOIN boxoffice ON movies.id = boxoffice.movie_id
+order by rating desc
+```
+
+## JOINTURES EXTERNES
+
+Si les deux tables ont des données asymétriques, ce qui peut facilement se produire lorsque les données sont saisies dans des étapes, alors nous devrions utiliser un , ou au contraire pour nous assurer que Les données dont vous avez besoin ne sont pas laissées en dehors des résultats. __LEFT JOINRIGHT JOINFULL JOIN__
