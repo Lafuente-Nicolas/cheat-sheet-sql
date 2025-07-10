@@ -340,3 +340,41 @@ SELECT particle_speed / 2.0 AS half_particle_speed
 FROM physics_data
 WHERE ABS(particle_position) * 10.0 > 500;
 ```
+L’utilisation d’expressions peut faire gagner du temps et un post-traitement supplémentaire des données de résultat, mais peut également rendre plus difficile à lire, nous recommandons donc que lorsque des expressions sont utilisées dans la partie de la qu’on leur attribue également un alias descriptif à l’aide du mot-clé. __SELECTAS__
+```sql
+Sélectionner une requête avec des alias d’expression
+SELECT col_expression AS expr_description, …
+FROM mytable;
+```
+En plus des expressions, les colonnes régulières et même les tables peuvent également avoir des alias pour les rendre plus faciles pour référencer dans la sortie et dans le cadre de la simplification de requêtes plus complexes.
+```sql
+Exemple de requête avec des alias de nom de colonne et de table
+SELECT column AS better_column_name, …
+FROM a_long_widgets_table_name AS mywidgets
+INNER JOIN widget_sales
+  ON mywidgets.id = widget_sales.widget_id;
+  ```
+#### exercice : 
+
+__Énumérez tous les films et leurs ventes combinées en millions de dollars :__
+
+```sql
+SELECT title, (domestic_sales + international_sales) / 1000000 AS millions
+FROM movies
+JOIN boxoffice ON movies.id = boxoffice.movie_id;
+```
+
+__Listez tous les films et leurs notes en pourcentage__
+```sql 
+SELECT title, Rating *10 AS percent
+FROM movies
+JOIN boxoffice ON movies.id = boxoffice.movie_id;
+```
+__Énumérez tous les films sortis les années paires__
+```sql
+SELECT title, year as even_years  FROM movies
+WHERE year % 2 = 0;
+```
+## Requêtes avec des agrégats
+
+
