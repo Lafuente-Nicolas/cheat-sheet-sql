@@ -305,3 +305,38 @@ __Énumérez tous les bâtiments et les rôles distincts des employés dans chaq
 SELECT DISTINCT building_name, role FROM buildings 
 LEFT JOIN employees ON building_name = building;
 ```
+
+## Une courte note sur les valeurs NULL
+
+```sql 
+Sélectionner une requête avec des contraintes sur les valeurs NULL
+SELECT column, another_column, …
+FROM mytable
+WHERE column IS/IS NOT NULL
+AND/OR another_condition
+AND/OR …;
+```
+
+__Trouver le nom et le rôle de tous les employés qui n’ont pas été affectés à un bâtiment__
+
+```sql
+SELECT name, role FROM employees
+where building is null;
+```
+__Trouvez le nom des bâtiments qui n’emploient aucun employé__
+
+```sql
+select building_name from buildings
+left join Employees on building_name = building 
+where building is null
+```
+##  Requêtes avec des expressions
+
+Ces expressions peuvent utiliser des et des fonctions de chaîne de caractères ainsi que de l’arithmétique de base pour transformer les valeurs lors de l’exécution de la requête, comme le montre cet exemple de physique.
+
+```sql
+Exemple de requête avec des expressions
+SELECT particle_speed / 2.0 AS half_particle_speed
+FROM physics_data
+WHERE ABS(particle_position) * 10.0 > 500;
+```
