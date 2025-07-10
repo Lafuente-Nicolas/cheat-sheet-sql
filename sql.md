@@ -189,3 +189,40 @@ limit 5;
 __Énumérez les cinq prochains films Pixar classés par ordre alphabétique :__
 
 ```sql
+SELECT Title FROM movies
+ORDER BY Title asc
+limit 5 offset 5;
+```
+
+## Révision SQL : requêtes SELECT simples
+
+#### exercice : 
+
+__Énumérer toutes les villes canadiennes et leurs populations__
+
+```sql
+SELECT city, population FROM north_american_cities
+where country = "Canada";
+```
+
+__Classez toutes les villes des États-Unis par leur latitude du nord au sud__
+```sql
+SELECT city FROM north_american_cities
+where country = "United States"
+order by latitude desc
+```
+
+__Énumérez toutes les villes à l’ouest de Chicago, classées d’ouest en est__
+```sql
+SELECT city, longitude FROM north_american_cities
+WHERE longitude < -87.629798
+ORDER BY longitude ASC;
+```
+
+__Énumérer les deux plus grandes villes du Mexique (par population)__
+```sql
+SELECT city FROM north_american_cities
+where country = "Mexico"
+order by population desc
+limit 2;
+``` 
