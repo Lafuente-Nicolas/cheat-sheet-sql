@@ -377,4 +377,37 @@ WHERE year % 2 = 0;
 ```
 ## Requêtes avec des agrégats
 
+SQL prend également en charge l’utilisation de Expressions d’agrégation (ou fonctions) qui vous permettent de résumer des informations sur un groupe de lignes de données. Avec la base de données Pixar que vous utilisez, des fonctions d’agrégation peuvent être __utilisées__ pour __répondre aux des questions__ telles que « Combien de films Pixar a-t-il produits ? » ou « Quel est le film Pixar le plus rentable ? chaque année ?`
 
+```sql
+Sélectionner une requête avec des fonctions d’agrégation sur toutes les lignes
+SELECT AGG_FUNC(column_or_expression) AS aggregate_description, …
+FROM mytable
+WHERE constraint_expression;
+```
+| Fonction               | Description                                                                                                       |
+|------------------------|-------------------------------------------------------------------------------------------------------------------|
+| `COUNT(*)`, `COUNT(colonne)` | Fonction courante utilisée pour compter le nombre de lignes dans le groupe si aucun nom de colonne n’est spécifié. Sinon, compte le nombre de lignes du groupe avec des valeurs non NULL dans la colonne spécifiée. |
+| `MIN(colonne)`         | Recherche la plus petite valeur numérique dans la colonne spécifiée pour toutes les lignes du groupe.             |
+| `MAX(colonne)`         | Recherche la valeur numérique la plus élevée dans la colonne spécifiée pour toutes les lignes du groupe.          |
+| `AVG(colonne)`         | Recherche la valeur numérique moyenne dans la colonne spécifiée pour toutes les lignes du groupe.                 |
+| `SUM(colonne)`         | Recherche la somme de toutes les valeurs numériques dans la colonne spécifiée pour les lignes du groupe.          |
+
+### Fonctions d’agrégation groupées
+
+En plus d’agréger toutes les lignes, vous pouvez appliquer les fonctions d’agrégation à des groupes individuels de données au sein de ce groupe (c’est-à-dire les ventes au box-office pour les comédies par rapport aux films d’action).
+Cela créerait alors autant de résultats qu’il y a de groupes uniques définis par la clause. __GROUP BY__
+```sql
+Sélectionner une requête avec des fonctions d’agrégation sur des groupes
+SELECT AGG_FUNC(column_or_expression) AS aggregate_description, …
+FROM mytable
+WHERE constraint_expression
+GROUP BY column;
+```
+
+#### exercice
+
+__Trouvez la plus longue période d’ancienneté d’un employé dans le studio__
+```sql 
+SELECT	MAX(years_employed) FROM employees;
+```
